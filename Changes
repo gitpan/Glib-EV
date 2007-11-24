@@ -1,0 +1,4 @@
+Revision history for Glib::EV
+
+0.1  Sat Nov 24 17:10:16 CET 2007
+	- original version, a Glib::Event clone.
