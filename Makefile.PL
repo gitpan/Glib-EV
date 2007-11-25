@@ -21,8 +21,8 @@ my $mm = MM->new({EV::MakeMaker::ev_args (
     },
     EXTRA_META => q{
 configure_requires:
-  ExtUtils::PkgConfig:0
-  EV:1.3
+  ExtUtils::PkgConfig: 0
+  EV: 1.3
     },
 
 )});

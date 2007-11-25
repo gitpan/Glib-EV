@@ -1,4 +1,7 @@
 Revision history for Glib::EV
 
+1.0  Sun Nov 25 10:44:58 CET 2007
+	- update META.yml, no functional changes.
+
 0.1  Sat Nov 24 17:10:16 CET 2007
 	- original version, a Glib::Event clone.
