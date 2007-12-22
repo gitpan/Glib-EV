@@ -15,9 +15,9 @@ get_gcontext (SV *context)
 }
 
 static void
-timeout_cb (ev_timer *w, int revents)
+timeout_cb (EV_P_ ev_timer *w, int revents)
 {
-  ev_unloop (EVUNLOOP_ONE);
+  ev_unloop (EV_A, EVUNLOOP_ONE);
 }
 
 typedef struct
@@ -28,18 +28,19 @@ typedef struct
 } slot;
 
 static void
-io_cb (ev_io *w, int revents)
+io_cb (EV_P_ ev_io *w, int revents)
 {
   slot *s = (slot *)w;
+  int oev = s->pfd->revents;
 
   s->pfd->revents |= s->pfd->events &
     ((revents & EV_READ ? G_IO_IN : 0)
      | (revents & EV_READ ? G_IO_OUT : 0));
 
-  if (s->pfd->revents)
+  if (!oev && s->pfd->revents)
     ++*(s->got_events);
 
-  ev_unloop (EVUNLOOP_ONE);
+  ev_unloop (EV_A, EVUNLOOP_ONE);
 }
 
 static gint
@@ -71,22 +72,22 @@ event_poll_func (GPollFD *fds, guint nfds, gint timeout)
         (pfd->events & G_IO_IN ? EV_READ : 0)
          | (pfd->events & G_IO_OUT ? EV_WRITE : 0)
       );
-      ev_io_start (&s->io);
+      ev_io_start (EV_DEFAULT, &s->io);
     }
 
   if (timeout >= 0)
     {
       ev_timer_init (&to, timeout_cb, timeout * 1e-3, 0.);
-      ev_timer_start (&to);
+      ev_timer_start (EV_DEFAULT, &to);
     }
 
-  ev_loop (0);
+  ev_loop (EV_DEFAULT, 0);
 
   if (timeout >= 0)
-    ev_timer_stop (&to);
+    ev_timer_stop (EV_DEFAULT, &to);
 
   for (n = 0; n < nfds; ++n)
-    ev_io_stop (&slots[n].io);
+    ev_io_stop (EV_DEFAULT, &slots[n].io);
 
   return got_events;
 }

@@ -16,13 +16,13 @@ my $mm = MM->new({EV::MakeMaker::ev_args (
     LIBS         => [$glib{libs}],
     PREREQ_FATAL => 1,
     PREREQ_PM    => {
-       EV                  => 1.3,
+       EV                  => 2.0,
        ExtUtils::PkgConfig => 0,
     },
     EXTRA_META => q{
 configure_requires:
   ExtUtils::PkgConfig: 0
-  EV: 1.3
+  EV: 2.0
     },
 
 )});

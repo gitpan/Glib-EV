@@ -21,6 +21,13 @@ SYNOPSIS
      # ... do other things
 
 DESCRIPTION
+    If you want to use glib/gtk+ in an EV program, then you need to look at
+    the EV::Glib module, not this one, as this module requires you to run a
+    Glib or Gtk+ main loop in your program.
+
+    If you want to use EV in an Glib/Gtk+ program, you are at the right
+    place here.
+
     This module coerces the Glib event loop to use the EV high performance
     event loop as underlying event loop, i.e. EV will be used by Glib for
     all events.
