@@ -45,7 +45,7 @@ I<have> to use the Glib mainloop functions).
 
 This module has no dependency on the existing Glib perl interface, as it
 uses glib directly. The Glib module can, however, be used without any
-problems (as long as evereybody uses shared libraries to keep everybody
+problems (as long as everybody uses shared libraries to keep everybody
 else happy).
 
 =item * The default context will be changed when the module is loaded.
@@ -69,7 +69,7 @@ use EV ();
 our $default_poll_func;
 
 BEGIN {
-   $VERSION = '2.0';
+   $VERSION = '2.01';
 
    require XSLoader;
    XSLoader::load (Glib::EV, $VERSION);

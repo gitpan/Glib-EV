@@ -35,7 +35,7 @@ io_cb (EV_P_ ev_io *w, int revents)
 
   s->pfd->revents |= s->pfd->events &
     ((revents & EV_READ ? G_IO_IN : 0)
-     | (revents & EV_READ ? G_IO_OUT : 0));
+     | (revents & EV_WRITE ? G_IO_OUT : 0));
 
   if (!oev && s->pfd->revents)
     ++*(s->got_events);

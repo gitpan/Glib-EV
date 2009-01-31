@@ -24,7 +24,6 @@ configure_requires:
   ExtUtils::PkgConfig: 0
   EV: 2.0
     },
-
 )});
 
 $mm->flush;
