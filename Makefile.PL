@@ -4,7 +4,7 @@ use EV::MakeMaker;
 
 %glib = ExtUtils::PkgConfig->find ("glib-2.0");
 
-my $mm = MM->new({EV::MakeMaker::ev_args (
+WriteMakefile(EV::MakeMaker::ev_args (
     dist         => {
        PREOP	=> 'pod2text EV.pm | tee README >$(DISTVNAME)/README; chmod -R u=rwX,go=rX . ;',
        COMPRESS	=> 'gzip -9v',
@@ -16,15 +16,11 @@ my $mm = MM->new({EV::MakeMaker::ev_args (
     LIBS         => [$glib{libs}],
     PREREQ_FATAL => 1,
     PREREQ_PM    => {
-       EV                  => 2.0,
+       EV                  => 4.00,
        ExtUtils::PkgConfig => 0,
     },
-    EXTRA_META => q{
-configure_requires:
-  ExtUtils::PkgConfig: 0
-  EV: 2.0
+    CONFIGURE_REQUIRES => {
+       EV                  => 4.00,
+       ExtUtils::PkgConfig => 0,
     },
-)});
-
-$mm->flush;
-
+));

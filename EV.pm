@@ -69,7 +69,7 @@ use EV ();
 our $default_poll_func;
 
 BEGIN {
-   $VERSION = '2.01';
+   $VERSION = '2.02';
 
    require XSLoader;
    XSLoader::load (Glib::EV, $VERSION);

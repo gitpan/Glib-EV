@@ -17,7 +17,7 @@ get_gcontext (SV *context)
 static void
 timeout_cb (EV_P_ ev_timer *w, int revents)
 {
-  ev_unloop (EV_A, EVUNLOOP_ONE);
+  ev_break (EV_A, EVBREAK_ONE);
 }
 
 typedef struct
@@ -40,7 +40,7 @@ io_cb (EV_P_ ev_io *w, int revents)
   if (!oev && s->pfd->revents)
     ++*(s->got_events);
 
-  ev_unloop (EV_A, EVUNLOOP_ONE);
+  ev_break (EV_A, EVBREAK_ONE);
 }
 
 static gint
@@ -81,7 +81,7 @@ event_poll_func (GPollFD *fds, guint nfds, gint timeout)
       ev_timer_start (EV_DEFAULT, &to);
     }
 
-  ev_loop (EV_DEFAULT, 0);
+  ev_run (EV_DEFAULT, 0);
 
   if (timeout >= 0)
     ev_timer_stop (EV_DEFAULT, &to);

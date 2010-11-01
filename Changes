@@ -1,5 +1,8 @@
 Revision history for Glib::EV
 
+2.02 Mon Nov  1 23:22:19 CET 2010
+	- port to EV 4.00 API.
+
 2.01 Sat Jan 31 10:47:04 CET 2009
 	- fixed the problem of glib users being unable to
           poll for writing (analysed by common@gmx.ch).
